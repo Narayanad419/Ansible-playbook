@@ -1,13 +1,17 @@
 ---
-- hosts: nodes
+- hosts: all
   tasks:
   - name: Installing Apache
     yum:
       name: httpd
       state: installed
     become: yes
-   - name: starting Apache
+    tags:
+      - install
+  - name: startng apache
     service:
       name: httpd
       state: started
     become: yes
+    tags:
+      - start
