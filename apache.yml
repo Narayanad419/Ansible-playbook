@@ -13,12 +13,8 @@
       src: "/home/centos/index.html"
       dest: "/var/www/html"
     become: yes
-    tags:
-       - copy
   - name: starting Apache
     service:
       name: httpd
       state: started
     become: yes
-    tags:
-      - start
