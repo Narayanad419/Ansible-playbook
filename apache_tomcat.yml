@@ -1,0 +1,33 @@
+---
+- hosts: all
+  become: True
+  tasks:
+  - name: Installing java 1.8
+    yum:
+      name: "{{ item }}"
+      state: installed
+    with_items:
+      - java-1.8.0-openjdk-devel.x86_64
+  -  name: To delete the old directories for properly run the task
+     command: "{{ item }}"
+     with_items:
+      - rm -rf /opt/apache-tomcat-8.5.71
+      - rm -rf /opt/tomcat
+  - name: Download and Unarchive a file
+    unarchive:
+      src: https://downloads.apache.org/tomcat/tomcat-8/v8.5.71/bin/apache-tomcat-8.5.71.zip
+      dest: /opt/
+      remote_src: True
+  -  name: To modify name of a directory
+     command: "{{ item }}"
+     with_items:
+      - rm -rf /opt/apache-tomcat-8.5.71.zip
+      - mv /opt/apache-tomcat-8.5.71/ /opt/tomcat
+  -  name: To start the tomcat
+     shell: "{{ item }}"
+     with_items:
+      - chmod +x /opt/tomcat/bin/*.sh
+      - nohup /opt/tomcat/bin/startup.sh
+
+
+

@@ -1,0 +1,7 @@
+[nodes]
+172.31.39.81 ansible_user=Node1
+172.31.38.78 ansible_user=Node2
+[testservers]
+172.31.13.162 ansible_user=ec2-user
+172.31.15.205 ansible_user=ec2-user
+
