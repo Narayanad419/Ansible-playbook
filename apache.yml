@@ -6,14 +6,7 @@
       name: httpd
       state: installed
     become: yes
-    tags:
-      - install
-  - name: copying the html file
-    copy:
-      src: "/home/centos/index.html"
-      dest: "/var/www/html"
-    become: yes
-  - name: starting Apache
+   - name: starting Apache
     service:
       name: httpd
       state: started
