@@ -1,6 +1,5 @@
 ---
 - hosts: nodes
-  become: true
   tasks:
   - name: Installing Apache
     yum:
